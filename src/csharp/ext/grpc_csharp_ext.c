@@ -16,6 +16,8 @@
  *
  */
 
+#pragma comment(lib, "advapi32")
+
 #include <grpc/byte_buffer_reader.h>
 #include <grpc/grpc.h>
 #include <grpc/grpc_security.h>

@@ -162,6 +162,17 @@ namespace Grpc.Core.Internal
             get { return IntPtr.Size == 8; }
         }
 
+        public static bool IsArm
+        {
+            get
+            {
+                PortableExecutableKinds peKind;
+                ImageFileMachine machine;
+                typeof(object).Module.GetPEKind(out peKind, out machine);
+                return machine == ImageFileMachine.ARM;
+            }
+        }
+
         /// <summary>
         /// Returns <c>UnityEngine.Application.platform</c> as a string.
         /// See https://docs.unity3d.com/ScriptReference/Application-platform.html for possible values.

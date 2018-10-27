@@ -92,9 +92,9 @@ namespace Grpc.Core.Internal
             // With dotnet cli project targeting netcoreapp1.0, projects will use Grpc.Core assembly directly in the location where it got restored
             // by nuget. We locate the native libraries based on known structure of Grpc.Core nuget package.
             // When "dotnet publish" is used, the runtimes directory is copied next to the published assemblies.
-            string libPath = "Libs";
-            var netCorePublishedAppStylePath = Path.Combine(assemblyDirectory, libPath, GetNativeLibraryFilename());
-            var netCoreAppStylePath = Path.Combine(assemblyDirectory, "../..", libPath, GetNativeLibraryFilename());
+            string runtimesDirectory = string.Format("runtimes/{0}/native", GetPlatformString());
+            var netCorePublishedAppStylePath = Path.Combine(assemblyDirectory, runtimesDirectory, GetNativeLibraryFilename());
+            var netCoreAppStylePath = Path.Combine(assemblyDirectory, "../..", runtimesDirectory, GetNativeLibraryFilename());
 
             // Look for the native library in all possible locations in given order.
             string[] paths = new[] { classicPath, netCorePublishedAppStylePath, netCoreAppStylePath};
